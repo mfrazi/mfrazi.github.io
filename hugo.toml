@@ -2,3 +2,7 @@ baseURL = 'https://blog.mfrazi.me/'
 languageCode = 'en-us'
 title = 'Personal Blog'
 theme = 'PaperMod'
+
+[services]
+  [services.googleAnalytics]
+    id = 'G-HV7RHZJ57F'

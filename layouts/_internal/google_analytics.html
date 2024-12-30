@@ -1,0 +1,18 @@
+{{ if not site.Config.Privacy.GoogleAnalytics.Disable }}
+{{- with site.Config.Services.GoogleAnalytics.ID }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+<script>
+    var doNotTrack = false;
+    if ({{ site.Config.Privacy.GoogleAnalytics.RespectDoNotTrack }}) {
+        var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+        var doNotTrack = (dnt == "1" || dnt == "yes");
+    }
+    if (!doNotTrack) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ . }}');
+    }
+</script>
+{{- end }}
+{{- end -}}
