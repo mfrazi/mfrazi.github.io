@@ -1,0 +1,4 @@
+baseURL = 'https://blog.mfrazi.me/'
+languageCode = 'en-us'
+title = 'Personal Blog'
+theme = 'PaperMod'
