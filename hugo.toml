@@ -1,4 +1,5 @@
 baseURL = 'https://blog.mfrazi.me/'
+enableRobotsTXT = true
 languageCode = 'en-us'
 title = 'Personal Blog'
 theme = 'PaperMod'
