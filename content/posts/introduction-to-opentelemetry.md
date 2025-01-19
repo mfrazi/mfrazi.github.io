@@ -25,7 +25,8 @@ In this post, we focus on setting up and testing OpenTelemetry metrics to monito
 ### What Can You Expect by the End of This Post?
 - Push metrics from the HTTP handler to Grafana Cloud.
 - Create a dashboard in Grafana Cloud to monitor latency, total traffic, and success rate.
-  You can find the code for this implementation in [this repository](https://github.com/mfrazi/sample-code/tree/main/go/opentelemetry-grafana-cloud)
+
+You can find the code for this implementation in [this repository](https://github.com/mfrazi/sample-code/tree/main/go/opentelemetry-grafana-cloud)
 
 ### Architecture
 This is the basic architecture that we will use.
@@ -100,7 +101,7 @@ func parseQueryParams(r *http.Request) (int, int, error) {
     return a, b, nil  
 }
 ```
-<div style="text-align: center;">http.go</div>
+{{< rawhtml >}}<div style="text-align: center;">http.go</div>{{< /rawhtml >}}
 
 ```go
 package main
@@ -122,7 +123,7 @@ func main() {
     }  
 }
 ```
-<div style="text-align: center;">main.go</div>
+{{< rawhtml >}}<div style="text-align: center;">main.go</div>{{< /rawhtml >}}
 
 You can run the program above and access it, for example:
 > `http://localhost:8080/divide?a=6&b=12`
@@ -202,7 +203,7 @@ func pushHistogram(ctx context.Context, latency int64, tags map[string]string) {
 	histogram.Record(ctx, latency, metric.WithAttributes(labels...))
 }
 ```
-<div style="text-align: center;">otel.go</div>
+{{< rawhtml >}}<div style="text-align: center;">otel.go</div>{{< /rawhtml >}}
 
 - **`InitOTLPMetricsExporter`**: Initializes an OTLP metrics exporter, sets up a `MeterProvider` with periodic metric export to Grafana Cloud, and configures the resource attributes for the service.
 - **`pushHistogram`**: Records latency data in a histogram with optional labels.
@@ -243,6 +244,7 @@ func main() {
 	}
 }
 ```
+{{< rawhtml >}}<div style="text-align: center;">main.go</div>{{< /rawhtml >}}
 
 ### 4. Push Histogram Metric in HTTP Handler
 After that, we need to manually push the latency metric in the handler. However, this is not the best practice, as defining it in every function can be repetitive. For a better implementation, you can use middleware or a wrapper based on the HTTP library you're using.
@@ -279,6 +281,7 @@ func handleDivide(w http.ResponseWriter, r *http.Request) {
 	tags["status"] = "success"
 }
 ```
+
 ## 5. Create Test Function
 We can use Go's testing functions to create tests that will populate data in Grafana Cloud. You can adjust this function based on you needs.
 ***Make sure to run the application before executing the test.***
@@ -304,7 +307,7 @@ func TestPopulateMetricHistogram(t *testing.T) {
 	}
 }
 ```
-<div style="text-align: center;">test_test.go</div>
+{{< rawhtml >}}<div style="text-align: center;">test_test.go</div>{{< /rawhtml >}}
 
 ### 6. View Metrics in Grafana Cloud
 After running the test above to populate the data, you can check it on your Grafana dashboard (`https://<stack_name>.grafana.net/explore/metrics`). If the metrics were successfully pushed, you should see something like the image below. Note that it may take some time for the data to fully appear on the dashboard.
