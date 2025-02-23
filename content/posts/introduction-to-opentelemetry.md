@@ -6,7 +6,7 @@ date = 2025-01-19T23:30:00+07:00
 ## Background
 If you're building an application, observability is essential for understanding how it performs. Popular tools like [Grafana](https://grafana.com/), [Datadog](https://www.datadoghq.com/), and [New Relic](https://newrelic.com/) each have their own way of integrating with applications. To make things simpler, OpenTelemetry was introduced as a standard for observability, and most of these tools now support it.
 
-With OpenTelemetry, switching to a different tool doesn’t mean rewriting your code. From my experience, moving to a new vendor usually takes a lot of time to refactor code, and OpenTelemetry makes the process much smoother.
+With OpenTelemetry, switching to a different tool doesn't mean rewriting your code. From my experience, moving to a new vendor usually takes a lot of time to refactor code, and OpenTelemetry makes the process much smoother.
 
 ## What is OpenTelemetry?
 According to the official documentation:
@@ -343,9 +343,9 @@ After that, you can save all your changes, and you should see something like thi
 ![](https://storage.googleapis.com/blog.mfrazi.me/introduction-to-opentelemetry/9-grafana.webp)
 
 ## Conclusion
-The example above shows how OpenTelemetry works at a basic level. While it’s a good starting point, there are more robust solutions for production environments, like using a collector to send your data to the vendor of your choice.
+The example above shows how OpenTelemetry works at a basic level. While it's a good starting point, there are more robust solutions for production environments, like using a collector to send your data to the vendor of your choice.
 
-Right now, OpenTelemetry helps make it easier to switch between observability services, but you’ll still need to manually update dashboards and monitoring setups when you change vendors. OpenTelemetry is still "quite" in its early stages, and the documentation and examples are a bit rough, so finding solutions to issues can be tough. If you're just starting to build an application and experimenting with observability, OpenTelemetry is definitely worth trying. However, if you’re working with a large system and planning to migrate to OpenTelemetry, it requires a considerable amount of effort due to the changes needed in both your code and infrastructure.
+Right now, OpenTelemetry helps make it easier to switch between observability services, but you'll still need to manually update dashboards and monitoring setups when you change vendors. OpenTelemetry is still "quite" in its early stages, and the documentation and examples are a bit rough, so finding solutions to issues can be tough. If you're just starting to build an application and experimenting with observability, OpenTelemetry is definitely worth trying. However, if you're working with a large system and planning to migrate to OpenTelemetry, it requires a considerable amount of effort due to the changes needed in both your code and infrastructure.
 
 That said, OpenTelemetry has huge potential, and it's likely to become a standard across observability tools, so it's a good idea to get familiar with it now while it's evolving.
 
