@@ -13,7 +13,7 @@ In this post, I would like to share my experience in building habits based on Ja
 Building habits is not just about starting something new; it's also about stopping behaviors that no longer serve you. In this post, I will summarize and briefly share examples of how you can start a habit using the framework from Atomic Habits.
 
 Here are some key points that will serve as a starting point to shape your perspective and mindset on how habit-building works
-1. **Build habits by focusing on _who you want to become_, not just what you want to do.** Instead of saying, _“I want to run a 5K,”_ say, _“I want to become a runner”_ or _“I want to be a healthy person.”_
+1. **Build habits by focusing on _who you want to become_, not just what you want to do.** Instead of saying, _“I want to run a 5K,”_ say, _“I am a runner”_ or _“I am a healthy person who prioritizes health and movement every day.”_
 2. **Tiny improvements (1% better every day) lead to massive results over time.** Progress isn't always visible at first, but small habits compound and create long-term change.
 3. **Stick to habits that are challenging but not too difficult** to maintain motivation and prevent burnout.
 4. **If you break a habit once, get back on track immediately** to avoid falling into a cycle of inconsistency.
