@@ -1,5 +1,5 @@
 +++
-title = 'My Point of View of Wealth'
+title = 'Reflecting on Wealth'
 date = 2025-03-29T16:00:00+07:00
 +++
 
