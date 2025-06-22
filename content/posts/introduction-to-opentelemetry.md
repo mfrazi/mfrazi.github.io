@@ -11,8 +11,8 @@ With OpenTelemetry, switching to a different tool doesn't mean rewriting your co
 ## What is OpenTelemetry?
 According to the official documentation:
 > OpenTelemetry is:
-> - An [Observability](https://opentelemetry.io/docs/concepts/observability-primer/#what-is-observability) framework and toolkit designed to create and manage telemetry data such as [traces](https://opentelemetry.io/docs/concepts/signals/traces/), [metrics](https://opentelemetry.io/docs/concepts/signals/metrics/), and [logs](https://opentelemetry.io/docs/concepts/signals/logs/).
-> - Vendor- and tool-agnostic, meaning that it can be used with a broad variety of Observability backends, including open source tools like [Jaeger](https://www.jaegertracing.io/) and [Prometheus](https://prometheus.io/), as well as commercial offerings.
+> - An [Observability](https://opentelemetry.io/docs/concepts/observability-primer/#what-is-observability) framework and toolkit designed to create and manage telemetry data such as [traces](https://opentelemetry.io/docs/concepts/signals/traces/), [metrics](https://opentelemetry.io/docs/concepts/signals/metrics/), and [logs](https://opentelemetry.io/docs/concepts/signals/logs/).
+> - Vendor- and tool-agnostic, meaning that it can be used with a broad variety of Observability backends, including open source tools like [Jaeger](https://www.jaegertracing.io/) and [Prometheus](https://prometheus.io/), as well as commercial offerings.
 > - Not an observability backend like Jaeger, Prometheus, or other commercial vendors.
 > - Focused on the generation, collection, management, and export of telemetry. A major goal of OpenTelemetry is that you can easily instrument your applications or systems, ***no matter their language, infrastructure, or runtime environment***. The storage and visualization of telemetry is intentionally left to other tools.
 
@@ -44,11 +44,15 @@ application -->|HTTP OTLP Endpoint| grafana
    ***This is not recommended for production environments.***. For production implementation, you can check [this post](https://grafana.com/docs/grafana-cloud/send-data/otlp/send-data-otlp/#recommended-production-architecture).
 
 ### 1. Getting Auth Token and OTPL endpoint
-1. [Sign In](https://grafana.com/auth/sign-in/) to the **Grafana Cloud Portal**.
-2. From your organization **Overview**, select or click **your stack name** to open a Grafana Cloud stack    ![step 2](https://storage.googleapis.com/blog.mfrazi.me/introduction-to-opentelemetry/1-grafana.webp)
-3. With a stack selected, click **Configure** from the **OpenTelemetry** tile. ![step 3](https://storage.googleapis.com/blog.mfrazi.me/introduction-to-opentelemetry/2-grafana.webp)
-4. Follow the instructions to generate an authentication token.![step 4](https://storage.googleapis.com/blog.mfrazi.me/introduction-to-opentelemetry/3-grafana.webp)
-5. We will use this `OTEL_EXPORTER_OTLP_ENDPOINT` and this `OTEL_EXPORTER_OTLP_HEADERS` for our use case. We directly use it in our code instead of environment variable.   ![step 5](https://storage.googleapis.com/blog.mfrazi.me/introduction-to-opentelemetry/4-grafana.webp)
+1. [Sign In](https://grafana.com/auth/sign-in/) to the **Grafana Cloud Portal**.
+2. From your organization **Overview**, select or click **your stack name** to open a Grafana Cloud stack
+![step 2]( https://assets.mfrazi.me/10263a55-a99d-473f-bd2c-30708c0e76d7/1fe12686-9393-46d9-94c7-49cbed4f0394.webp)
+3. With a stack selected, click **Configure** from the **OpenTelemetry** tile.
+![step 3]( https://assets.mfrazi.me/10263a55-a99d-473f-bd2c-30708c0e76d7/0c9a6914-38f0-409d-8b52-6a062743032e.webp)
+4. Follow the instructions to generate an authentication token.
+![step 4]( https://assets.mfrazi.me/10263a55-a99d-473f-bd2c-30708c0e76d7/418e762d-ec92-477c-9db6-6b45bfc42d7a.webp)
+5. We will use this `OTEL_EXPORTER_OTLP_ENDPOINT` and this `OTEL_EXPORTER_OTLP_HEADERS` for our use case. We directly use it in our code instead of environment variable.
+6. ![step 5]( https://assets.mfrazi.me/10263a55-a99d-473f-bd2c-30708c0e76d7/4faed7f6-730a-4bc2-a795-a5438558a448.webp)
 
 ### 2. Create Simple HTTP Server
 We will create a simple HTTP server with a single handler to divide two numbers.
@@ -311,23 +315,23 @@ func TestPopulateMetricHistogram(t *testing.T) {
 
 ### 6. View Metrics in Grafana Cloud
 After running the test above to populate the data, you can check it on your Grafana dashboard (`https://<stack_name>.grafana.net/explore/metrics`). If the metrics were successfully pushed, you should see something like the image below. Note that it may take some time for the data to fully appear on the dashboard.
-![](https://storage.googleapis.com/blog.mfrazi.me/introduction-to-opentelemetry/5-grafana.webp)
+![]( https://assets.mfrazi.me/10263a55-a99d-473f-bd2c-30708c0e76d7/d4078920-252f-4238-b1ad-860ecc079a02.webp)
 
 ### 7. Create Simple Dashboard
 #### Latency
 The first use case is to monitor how long a handler is running. Using these two queries, we can determine the *P95* and *P50* (median) latency across the timeseries.
 ```promql
-histogram_quantile(0.95, sum by(le) (rate(http_handler_bucket[$__rate_interval])))
+histogram_quantile(0.95, sum by(le) (rate(http_handler_bucket[$__rate_interval])))
 histogram_quantile(0.5, sum by(le) (rate(http_handler_bucket[$__rate_interval])))
 ```
-![](https://storage.googleapis.com/blog.mfrazi.me/introduction-to-opentelemetry/6-grafana.webp)
+![]( https://assets.mfrazi.me/10263a55-a99d-473f-bd2c-30708c0e76d7/38ae8733-f587-4417-9906-88a54c9e28e4.webp)
 
 #### Total Traffic
 The next use case is to check the total traffic coming to our server. Using this query, we can view traffic for each label. You can aggregate all traffic using `sum` function.
 ```promql
 increase(http_handler_count[$__rate_interval])
 ```
-![](https://storage.googleapis.com/blog.mfrazi.me/introduction-to-opentelemetry/7-grafana.webp)
+![]( https://assets.mfrazi.me/10263a55-a99d-473f-bd2c-30708c0e76d7/174dca00-c9ef-4b8b-aaa1-214021688b1e.webp)
 
 #### Success Rate
 The last use case in this post is using the metrics to calculate the success rate of our HTTP handler. To calculate the success rate, we will divide the number of successful requests by the total number of requests.
@@ -337,10 +341,10 @@ sum(increase(http_handler_count{status="success"}[$__rate_interval]))
 
 Expression: $B/$A*100
 ```
-![](https://storage.googleapis.com/blog.mfrazi.me/introduction-to-opentelemetry/8-grafana.webp)
+![]( https://assets.mfrazi.me/10263a55-a99d-473f-bd2c-30708c0e76d7/0be1cfe9-068f-404d-8e85-29217c255ed7.webp)
 
 After that, you can save all your changes, and you should see something like this:
-![](https://storage.googleapis.com/blog.mfrazi.me/introduction-to-opentelemetry/9-grafana.webp)
+![]( https://assets.mfrazi.me/10263a55-a99d-473f-bd2c-30708c0e76d7/d77cc893-bcc2-4c80-a527-f762a0d8a868.webp)
 
 ## Conclusion
 The example above shows how OpenTelemetry works at a basic level. While it's a good starting point, there are more robust solutions for production environments, like using a collector to send your data to the vendor of your choice.
