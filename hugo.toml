@@ -4,6 +4,11 @@ languageCode = 'en-us'
 title = 'Personal Blog'
 theme = 'PaperMod'
 
+[params.assets]
+  favicon = "https://assets.mfrazi.me/1c4953c6-4871-4388-9427-ad7eb26695b5/db59e041-6fbf-4bd8-a5dc-e5fc7f236d11.png"
+  favicon32x32 = "https://assets.mfrazi.me/1c4953c6-4871-4388-9427-ad7eb26695b5/0ee8cd1a-0515-48e3-b03c-91a02b075e05.png"
+  favicon16x16 = "https://assets.mfrazi.me/1c4953c6-4871-4388-9427-ad7eb26695b5/5771d9ab-e561-4ff1-975d-21b67400dcd9.png"
+
 [services]
   [services.googleAnalytics]
     id = 'G-HV7RHZJ57F'
